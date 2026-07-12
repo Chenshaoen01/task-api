@@ -15,6 +15,7 @@ using Task.Application.TaskHandlers.Commands.DeleteTask;
 namespace TaskApi.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 [ODataAttributeRouting]
 public class TaskController : ControllerBase
