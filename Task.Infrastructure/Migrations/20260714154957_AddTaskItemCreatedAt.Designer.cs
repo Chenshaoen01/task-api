@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Task.Infrastructure.DataBase;
 
@@ -11,9 +12,11 @@ using Task.Infrastructure.DataBase;
 namespace Task.Infrastructure.Migrations
 {
     [DbContext(typeof(TaskDbContext))]
-    partial class TaskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260714154957_AddTaskItemCreatedAt")]
+    partial class AddTaskItemCreatedAt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,9 +58,6 @@ namespace Task.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("AssigneeUserId")
-                        .HasColumnType("char(36)");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -82,8 +82,6 @@ namespace Task.Infrastructure.Migrations
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AssigneeUserId");
 
                     b.HasIndex("ProjectId");
 
@@ -149,11 +147,6 @@ namespace Task.Infrastructure.Migrations
 
             modelBuilder.Entity("Task.Domain.Entity.TaskItem", b =>
                 {
-                    b.HasOne("Task.Domain.Entity.User", "AssigneeUser")
-                        .WithMany()
-                        .HasForeignKey("AssigneeUserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("Task.Domain.Entity.Project", null)
                         .WithMany()
                         .HasForeignKey("ProjectId")
@@ -165,8 +158,6 @@ namespace Task.Infrastructure.Migrations
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("AssigneeUser");
                 });
 
             modelBuilder.Entity("Task.Domain.Entity.User", b =>

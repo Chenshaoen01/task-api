@@ -8,8 +8,11 @@ public class TaskItem
     public Guid Id { get; set; }
     public Guid TenantId { get; set; }
     public Guid ProjectId { get; set; }
+    public Guid? AssigneeUserId { get; set; }
+    public User? AssigneeUser { get; set; }
     public string TaskTitle { get; set; } = "";
     public string Description { get; set; } = "";
+    public DateTime CreatedAt { get; set; }
     public DateTime DueDate { get; set; }
     public TaskState State { get; set; }
     public void ChangeState(TaskState newState)

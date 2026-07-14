@@ -19,9 +19,11 @@ public class GetTaskByIdHandler
 
     public async Task<TaskItemGet?> Handle(GetTaskByIdQuery query)
     {
-        TaskItem? targetTaskItem = await _db.Tasks.FirstOrDefaultAsync(task => task.Id == query.id);
-        if(targetTaskItem == null) return null;
+        TaskItem? targetTaskItem = await _db.Tasks
+          .Include(task => task.AssigneeUser)
+          .FirstOrDefaultAsync(task => task.Id == query.id);
 
+        if(targetTaskItem == null) return null;
         return _mapper.Map<TaskItemGet>(targetTaskItem);
     }
 };

@@ -23,6 +23,7 @@ public class UpdateTaskHandler
         TaskItem? targetTaskItem = await _db.Tasks.FirstOrDefaultAsync(task => task.Id == command.Id);
         if(targetTaskItem == null) return null;
 
+        targetTaskItem.AssigneeUserId = command.taskItemUpdate.AssigneeUserId;
         targetTaskItem.TaskTitle = command.taskItemUpdate.TaskTitle;
         targetTaskItem.Description = command.taskItemUpdate.Description;
         targetTaskItem.DueDate = command.taskItemUpdate.DueDate;

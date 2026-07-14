@@ -57,6 +57,13 @@ public class TaskDbContext : DbContext, ITaskDbContext
           .WithMany()
           .HasForeignKey(task => task.ProjectId)
           .OnDelete(DeleteBehavior.Restrict);
+
+        // TaskItem ForeignKey：AssigneeUserId
+        modelBuilder.Entity<TaskItem>()
+          .HasOne(task => task.AssigneeUser)
+          .WithMany()
+          .HasForeignKey(task => task.AssigneeUserId)
+          .OnDelete(DeleteBehavior.Restrict);
     }
 
     private void ApplyTenantId()

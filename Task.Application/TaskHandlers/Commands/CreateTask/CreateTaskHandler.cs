@@ -30,8 +30,10 @@ public class CreateTaskHandler
         {
             Id = Guid.NewGuid(),
             ProjectId = command.taskItemCreate.ProjectId,
+            AssigneeUserId = command.taskItemCreate.AssigneeUserId,
             TaskTitle = command.taskItemCreate.TaskTitle,
             Description = command.taskItemCreate.Description,
+            CreatedAt = DateTime.UtcNow,
             DueDate = command.taskItemCreate.DueDate,
             State = TaskState.Todo
         };

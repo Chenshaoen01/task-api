@@ -10,7 +10,9 @@ public class TaskProfile : Profile
 {
     public TaskProfile()
     {
-        CreateMap<TaskItem, TaskItemGet>();
+        CreateMap<TaskItem, TaskItemGet>()
+          .ForMember(dest => dest.AssigneeUserName,
+            opt => opt.MapFrom(src => src.AssigneeUser == null ? "" : src.AssigneeUser.Name));
         CreateMap<Project, ProjectGet>();
         CreateMap<User, UserGet>();
     }
