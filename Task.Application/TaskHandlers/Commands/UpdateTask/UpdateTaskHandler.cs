@@ -24,6 +24,7 @@ public class UpdateTaskHandler
         if(targetTaskItem == null) return null;
 
         targetTaskItem.TaskTitle = command.taskItemUpdate.TaskTitle;
+        targetTaskItem.Description = command.taskItemUpdate.Description;
         targetTaskItem.DueDate = command.taskItemUpdate.DueDate;
         targetTaskItem.ChangeState(command.taskItemUpdate.State);
 
