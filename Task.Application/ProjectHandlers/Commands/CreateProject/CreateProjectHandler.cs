@@ -21,7 +21,8 @@ public class CreateProjectHandler
         {
             Id = Guid.NewGuid(),
             Name = command.projectCreate.Name,
-            Description = command.projectCreate.Description
+            Description = command.projectCreate.Description,
+            CreatedAt = DateTime.UtcNow
         };
         _db.Projects.Add(newProject);
         await _db.SaveChangesAsync();
