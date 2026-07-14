@@ -22,6 +22,7 @@ public class UpdateProjectHandler
         if(targetProject == null) return null;
 
         targetProject.Name = command.projectUpdate.Name;
+        targetProject.Description = command.projectUpdate.Description;
         await _db.SaveChangesAsync();
 
         return _mapper.Map<ProjectGet>(targetProject);

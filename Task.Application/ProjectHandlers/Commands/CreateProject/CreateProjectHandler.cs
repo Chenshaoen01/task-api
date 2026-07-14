@@ -20,7 +20,8 @@ public class CreateProjectHandler
         Project newProject = new Project()
         {
             Id = Guid.NewGuid(),
-            Name = command.projectCreate.Name
+            Name = command.projectCreate.Name,
+            Description = command.projectCreate.Description
         };
         _db.Projects.Add(newProject);
         await _db.SaveChangesAsync();
